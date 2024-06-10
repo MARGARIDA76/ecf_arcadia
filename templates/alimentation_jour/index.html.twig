@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}AlimentationJour index{% endblock %}
+
+{% block body %}
+    <h1>AlimentationJour index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nourriture</th>
+                <th>Date</th>
+                <th>Quantite</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for alimentation_jour in alimentation_jours %}
+            <tr>
+                <td>{{ alimentation_jour.id }}</td>
+                <td>{{ alimentation_jour.nourriture }}</td>
+                <td>{{ alimentation_jour.date ? alimentation_jour.date|date('Y-m-d') : '' }}</td>
+                <td>{{ alimentation_jour.quantite }}</td>
+                <td>
+                    <a href="{{ path('app_alimentation_jour_show', {'id': alimentation_jour.id}) }}">show</a>
+                    <a href="{{ path('app_alimentation_jour_edit', {'id': alimentation_jour.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_alimentation_jour_new') }}">Create new</a>
+{% endblock %}

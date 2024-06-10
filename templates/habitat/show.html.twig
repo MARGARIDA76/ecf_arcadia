@@ -1,0 +1,57 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}habitat{% endblock %}
+
+{% block body %}
+<link rel="stylesheet" href="{{ asset('css/accueil.css') }}">
+
+<div class="row flex-lg-row-reverse  g-5 py-5">
+      <div class="col-10 col-sm-8 col-lg-5">
+        <img src="{{ vich_uploader_asset(habitat, 'imageFile') }}" class="d-block mx-lg-auto img-fluid rounded " alt="{{ habitat.nom }}" width="700" height="500" loading="lazy">
+      </div>
+      <div class="col-lg-7">
+        <h1 class="display-5 fw-bold text-body-emphasis lh-1 mb-3">{{ habitat.nom }}</h1>
+        <p class="lead">{{ habitat.description }} </p>
+        
+      </div>
+    </div>
+
+
+<h1>Les animaux de cet habitat :</h1>
+
+<div class="row">
+    {% for animal in animaux %}
+    <div class="col-lg-4 col-sm-10  my-2 d-flex">
+        <div class="card w-100">
+            {% if animal.imageName %}
+                <img src="{{ vich_uploader_asset(animal, 'imageFile') }}" class="card-img-top img-fluid" alt="affiche {{ animal.nom }}" style="height: 280px;">
+            {% else %}
+                <img src="{{ asset('build/images/default-service.png') }}" class="card-img-top img-fluid" alt="affiche {{ animal.nom }}" style="height: 280px;">
+            {% endif %}
+            <div class="card-body">
+                <h5 class="card-title">{{ animal.nom }}</h5>
+                <a href="{{ path('app_animal_show', {'id': animal.id}) }}" class="btn btn-primary">Voir la fiche</a>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+<div class="row  mt-5">
+    {% if rapport is not null %}
+       <div class="col-lg-4 col-sm-10">
+        <h2>Rapport Vétérinaire</h2>
+        <div class="card mb-4  mt-5" style="height: 400px;">
+            <div class="card-body">
+                <p class="card-text"> Etat de l'habitat : {{ rapport.etat }}</p>
+                <hr class="my-3"> <!-- Ligne de séparation -->
+                <p class="card-text"> Dernier Passage : {{ rapport.date|date('d/m/Y') }}</p>
+            </div>
+        </div>
+    </div>
+
+    {% endif %}
+</div>
+
+
+{% endblock %}

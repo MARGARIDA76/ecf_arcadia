@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New AlimentationJour{% endblock %}
+
+{% block body %}
+    <h1>Create new AlimentationJour</h1>
+
+    {{ include('alimentation_jour/_form.html.twig') }}
+
+    <a href="{{ path('app_alimentation_jour_index') }}">back to list</a>
+{% endblock %}

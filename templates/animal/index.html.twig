@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Animaux{% endblock %}
+
+
+
+{% block body %}
+<link rel="stylesheet" href="{{ asset('css/accueil.css') }}">
+<link rel="stylesheet" href="{{ asset('css/animal.css') }}">
+
+<div class="text-center mt-5">
+<h1 class="mb-4">Nos animaux du zoo</h1>
+</div>
+      
+
+<div id="animal-list" class="row text-center">
+    {% for animal in animals %}
+        {% include "partials/animal/_animal_block.html.twig" %}
+    {% endfor %}
+</div>
+
+
+{% endblock %}
+{%  block javascripts %} 
+{%  endblock %}
+

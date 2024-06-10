@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Le Service{% endblock %}
+
+{% block body %}
+<link rel="stylesheet" href="{{ asset('css/accueil.css') }}">
+
+<div class="row flex-lg-row-reverse  g-5 py-5">
+      <div class="col-10 col-sm-8 col-lg-4">
+        <img src="{{ vich_uploader_asset(service, 'imageFile') }}" class="d-block mx-lg-auto img-fluid rounded " alt="{{ service.nom }}" width="700" height="500" loading="lazy">
+      </div>
+      <div class="col-lg-8">
+        <h1 class="display-5 fw-bold text-body-emphasis lh-1 mb-3">{{ service.nom }}</h1>
+        <p class="lead">{{ service.description }} </p>
+        
+      </div>
+    </div>
+
+
+
+
+{% endblock %}

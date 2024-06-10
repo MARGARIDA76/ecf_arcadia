@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit AlimentationJour{% endblock %}
+
+{% block body %}
+    <h1>Edit AlimentationJour</h1>
+
+    {{ include('alimentation_jour/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('app_alimentation_jour_index') }}">back to list</a>
+
+    {{ include('alimentation_jour/_delete_form.html.twig') }}
+{% endblock %}

@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nos services{% endblock %}
+
+{% block body %}
+<link rel="stylesheet" href="{{ asset('css/accueil.css') }}">
+<link rel="stylesheet" href="{{ asset('css/service.css') }}">
+<h1 class="mb-4">Nos services</h1>
+<div class="row text-center">
+{% for service in services %}
+  {% include "partials/service/_service_block.html.twig" %}
+{% endfor %}
+</div>
+
+
+
+
+{% endblock %}

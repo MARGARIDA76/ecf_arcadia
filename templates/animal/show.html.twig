@@ -1,0 +1,66 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ animal.nom }}{% endblock %}
+
+{% block body %}
+<link rel="stylesheet" href="{{ asset('css/accueil.css') }}">
+
+<div class="row flex-lg-row-reverse  g-5 py-5">
+      <div class="col-10 col-sm-8 col-lg-6">
+        <img src="{{ vich_uploader_asset(animal, 'imageFile') }}" class="d-block mx-lg-auto img-fluid rounded " alt="{{ animal.nom }}" width="700" height="500" loading="lazy">
+        {% if isAdmin %}
+    {% if visitAnimal is not null %}
+        <p class="lead mb-5">Nombre de visites : {{ visitAnimal.visits }}</p>
+    {% endif %}
+{% endif %}
+      </div>
+      <div class="col-lg-6">
+        <h1 class="display-5 fw-bold text-body-emphasis lh-1 mb-3">{{ animal.nom }}</h1>
+        <h3 class="mb-5">{{ animal.nom }} est un {{ animal.race }} </h3>
+       
+        <p class="lead">{{ animal.description }} </p>
+        <p class="lead mb-5">Nous pouvons retrouver notre ami dans : {{ animal.habitat }} </p>
+      </div>
+</div>
+<div class="row">
+    {{ include ('partials/Avis/_form.html.twig')}}
+</div>
+
+<h2 class="m-5">Vos commentaires :</h2>
+<div class="row">
+    {% for avis in avisValides|slice(0, 3) %}
+    <div class="col-md-4">
+        <div class="card mb-4" style="height: 270px;">
+            <div class="card-body">
+                <h5 class="card-title">{{ avis.nom }}</h5>
+                <hr class="my-3"> <!-- Ligne de séparation -->
+                <p class="card-text">{{ avis.commentaire }}</p>
+            </div>
+        </div>
+    </div>
+{% endfor %}
+
+<div class="row justify-content-center mt-5">
+    {{ include ('partials/Rapportanimal/_rapportanimal.html.twig')}}
+    {% if alimentation is not null %}
+    <div class="col-lg-4 col-sm-10">
+        <h2>Alimentation donnée</h2>
+        <div class="card mb-4 mt-5" style="height: 400px;">
+            <div class="card-body">
+                <p class="card-text">Nourriture : {{ alimentation.nourrituredonne }}</p>
+                <hr class="my-3"> <!-- Ligne de séparation -->
+                <p class="card-text">Quantité : {{ alimentation.quantite }} kg</p>
+            </div>
+        </div>
+    </div>
+{% endif %}
+</div>
+
+    
+</div>
+
+</div>
+
+
+
+{% endblock %}
